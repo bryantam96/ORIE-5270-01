@@ -10,6 +10,6 @@ for line in $filelines ; do
         unzip temp.zip;
         rm -f temp.zip;
         date1=$(echo $name_file | tail -c 9);
-        head -n 5000 $name_file| sed 's/[^[:alnum:]]\+$//;s/ \{1,\}/,/g' | sed 's/,/-/3g' | sed '/.*,.*,.*/!s/,/,,/' | sed $'s/\r$//' | sed '/^$/d' | sed s/$/,$date1/ > tmp_file;
+        sed '1 d' $name_file | head -n 5000 | sed 's/[^[:alnum:]]\+$//;s/ \{1,\}/,/g' | sed 's/,/-/3g' | sed '1i A,B,C,D' | sed '/.*,.*,.*/!s/,/,,/' | sed $'s/\r$//' | sed '/^$/d' | sed -e '2,$s/$/,'$date1'/' > tmp_file;
         mv tmp_file $name_file
 done
