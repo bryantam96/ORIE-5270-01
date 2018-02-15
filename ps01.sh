@@ -9,6 +9,6 @@ for line in $filelines ; do
         name_file="$(unzip -l temp.zip | awk '/-----/ {p = ++p % 2; next} p {print $NF}')";
         unzip temp.zip;
         rm -f temp.zip;
-        sed '1 d' $name_file | sed 's/./&\;/206;s/./&\;/172;s/./&\;/160;s/./&\;/156;s/./&\;/114;s/./&\;/101;s/./&\;/41;s/./&\;/26;s/./&,/1' | sed '/.*,.*,.*/!s/,/,,/' | sed $'s/\r$//' | sed '/^$/d' > tmp_file;
+        sed '1 d' $name_file | sed 's/./&\;/206;s/./&\;/172;s/./&\;/160;s/./&\;/156;s/./&\;/114;s/./&\;/101;s/./&\;/41;s/./&\;/26;' | sed '/.*,.*,.*/!s/,/,,/' | sed $'s/\r$//' | sed '/^$/d' > tmp_file;
         mv tmp_file $name_file
 done
