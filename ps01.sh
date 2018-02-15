@@ -9,7 +9,6 @@ for line in $filelines ; do
         name_file="$(unzip -l temp.zip | awk '/-----/ {p = ++p % 2; next} p {print $NF}')";
         unzip temp.zip;
         rm -f temp.zip;
-        date1=$(echo $name_file | tail -c 9);
-        sed '1 d' $name_file | head -n 5000 | sed 's/[^[:alnum:]]\+$//;s/ \{1,\}/,/g' | sed 's/,/-/3g' | sed '1i A,B,C,D' | sed '/.*,.*,.*/!s/,/,,/' | sed $'s/\r$//' | sed '/^$/d' | sed -e '2,$s/$/,'$date1'/' > tmp_file;
+        sed '1 d' $name_file | sed 's/./&,/206;s/./&,/172;s/./&,/160;s/./&,/156;s/./&,/114;s/./&,/101;s/./&,/41;s/./&,/26;s/./&,/1' | sed '/.*,.*,.*/!s/,/,,/' | sed $'s/\r$//' | sed '/^$/d' > tmp_file;
         mv tmp_file $name_file
 done
